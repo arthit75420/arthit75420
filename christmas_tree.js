@@ -1,10 +1,10 @@
-// n^2 christmas
+// n^2 christmas tree
 
-const christmas = (dept) => {
+const christmasTree = (depth) => {
   let strPrint = "";
-  for (let i = 0; i < dept; i++) {
-    for (let j = 0; j < dept * 2; j++) {
-      if (j < dept - i || j > dept + i) strPrint += " ";
+  for (let row = 0; row < depth; row++) {
+    for (let col = 0; col < depth * 2; col++) {
+      if (col < depth - row || col > depth + row) strPrint += " ";
       else strPrint += "*";
     }
     strPrint += "\r\n";
@@ -13,22 +13,20 @@ const christmas = (dept) => {
 };
 
 console.time("christmas");
-for (let i = 0; i < 10; i++) console.log(christmas(i));
+for (let i = 0; i < 10; i++) console.log(christmasTree(i));
 console.timeEnd("christmas");
 
+// recursive function christmas tree
 
-// recursive function christmas
-
-const recursiveFunctionChristmas = (dept, i = 0, j = 0, strPrint = "") => {
-  if(i === dept || dept === 0) return strPrint;
-  if (j < dept - i || j > dept + i) strPrint += " ";
+const recursiveFunctionChristmasTree = (depth, row = 0, col = 0, strPrint = "") => {
+  if(row === depth || depth === 0) return strPrint;
+  if (col < depth - row || col > depth + row) strPrint += " ";
   else strPrint += "*";
-  
-  if (j === dept * 2)
-    return recursiveFunctionChristmas(dept, i + 1, 0, strPrint + "\r\n");
-  return recursiveFunctionChristmas(dept, i, j + 1, strPrint);
+  if (col === depth * 2)
+    return recursiveFunctionChristmasTree(depth, row + 1, 0, strPrint + "\r\n");
+  return recursiveFunctionChristmasTree(depth, row, col + 1, strPrint);
 };
 
 console.time("christmas");
-for (let i = 0; i < 10; i++) console.log(recursiveFunctionChristmas(i));
+for (let i = 0; i < 10; i++) console.log(recursiveFunctionChristmasTree(i));
 console.timeEnd("christmas");
